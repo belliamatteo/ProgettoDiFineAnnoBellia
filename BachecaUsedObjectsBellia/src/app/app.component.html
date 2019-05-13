@@ -1,0 +1,51 @@
+<div style="text-align:center">
+  <h1>
+    {{ title }}!
+  </h1>
+
+  <form [formGroup]="telefoniForm" (ngSubmit)="onSubmit()">
+
+    <select (change)=onChange() [formControl] = "telefoniForm.controls['telefoniaControl']">
+      <option [ngValue]="telefonia" *ngFor="let telefonia of telefonie"> {{telefonia.title}}</option>
+    </select> <br>
+
+    nome: <input [formControl] = "songForm.controls['titleControl']"> 
+     <div *ngIf="!songForm.controls['titleControl'].valid" class="alert alert-danger">"nome" non è valido</div>
+            <div *ngIf="songForm.controls['titleControl'].hasError('required')" class="alert alert-danger">"nome" è richiesto</div>
+    <br>
+    cognome: <input [formControl] = "songForm.controls['dateControl']"> 
+     <div *ngIf="!songForm.controls['lengthControl'].valid" class="alert alert-danger">"nome" non è valido</div>
+            <div *ngIf="songForm.controls['lengthControl'].hasError('required')" class="alert alert-danger">"nome" è richiesto</div>
+    <br>
+    email: <input type = "date" [formControl] = "songForm.controls['lengthControl']"> 
+     <div *ngIf="!songForm.controls['dateControl'].valid" class="alert alert-danger">"nome" non è valido</div>
+            <div *ngIf="songForm.controls['dateControl'].hasError('required')" class="alert alert-danger">"nome" è richiesto</div>
+    <br>
+    : <input [formControl] = "songForm.controls['dateControl']"> 
+     <div *ngIf="!songForm.controls['linkControl'].valid" class="alert alert-danger">"nome" non è valido</div>
+            <div *ngIf="songForm.controls['linkControl'].hasError('required')" class="alert alert-danger">"nome" è richiesto</div>
+    <br>
+    valutazione : <input [formControl] = "songForm.controls['dateControl']"> 
+     <div *ngIf="!songForm.controls['valutazioneControl'].valid" class="alert alert-danger">"nome" non è valido</div>
+            <div *ngIf="songForm.controls['valutazioneControl'].hasError('required')" class="alert alert-danger">"nome" è richiesto</div>
+    <br>
+    <div *ngIf="!songForm.valid" class="alert alert-danger">Il form non è valido</div>
+   <button class="btn btn-success btn-block" type="add" [disabled]="!songForm.valid"> Aggiungi </button>
+  </form>
+  
+<div class="w-50 text-center" style="margin: 50px auto">
+  <h2>Elenco album</h2>
+  <ul class="list-group">
+    <li *ngFor="let album of albums" class="list-group-item text-center"  (click)="onSelect(album)">
+      {{ album.title }} {{ album.durata }} {{ album.data_uscita }} {{ album.link }} {{ album.valutazione }}</li>
+  </ul>
+  <app-view-album *ngIf="albumSelezionato" [album]="albumSelezionato"></app-view-album>
+</div>
+
+  {{selectedRoom | json}}
+
+ <ul>
+   <li *ngFor="let song of songList">
+    {{song.album.title}} : {{song | json}}
+   </li>
+ </ul>
