@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { TelefoniaList } from './telefoniaList.model';
 import { Telefonia } from './telefonia.model';
-import { Song } from './telefoni.model';
 import { FormBuilder,FormGroup, Validators} from '@angular/forms';
 
 @Component({
@@ -27,7 +26,7 @@ export class AppComponent {
       emailControl: ['', Validators.required],
     });
 
-    this.telefoniList = new Array <Song>();
+    this.telefoniList = new Array <Telefonia>();
   }
 
 
