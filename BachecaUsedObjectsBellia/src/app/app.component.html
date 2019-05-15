@@ -9,43 +9,35 @@
       <option [ngValue]="telefonia" *ngFor="let telefonia of telefonie"> {{telefonia.title}}</option>
     </select> <br>
 
-    nome: <input [formControl] = "songForm.controls['titleControl']"> 
-     <div *ngIf="!songForm.controls['titleControl'].valid" class="alert alert-danger">"nome" non è valido</div>
-            <div *ngIf="songForm.controls['titleControl'].hasError('required')" class="alert alert-danger">"nome" è richiesto</div>
+    nome: <input [formControl] = "telefoniForm.controls['nomeControl']"> 
+     <div *ngIf="!telefoniForm.controls['nomeControl'].valid" class="alert alert-danger">"nome" non è valido</div>
+            <div *ngIf="telefoniForm.controls['titleControl'].hasError('required')" class="alert alert-danger">"nome" è richiesto</div>
     <br>
-    cognome: <input [formControl] = "songForm.controls['dateControl']"> 
-     <div *ngIf="!songForm.controls['lengthControl'].valid" class="alert alert-danger">"nome" non è valido</div>
-            <div *ngIf="songForm.controls['lengthControl'].hasError('required')" class="alert alert-danger">"nome" è richiesto</div>
+    cognome: <input [formControl] = "telefoniForm.controls['cognomeControl']"> 
+     <div *ngIf="!telefoniForm.controls['cognomeControl'].valid" class="alert alert-danger">"cognome" non è valido</div>
+            <div *ngIf="telefoniForm.controls['cognomeControl'].hasError('required')" class="alert alert-danger">"cognome" è richiesto</div>
     <br>
-    email: <input type = "date" [formControl] = "songForm.controls['lengthControl']"> 
-     <div *ngIf="!songForm.controls['dateControl'].valid" class="alert alert-danger">"nome" non è valido</div>
-            <div *ngIf="songForm.controls['dateControl'].hasError('required')" class="alert alert-danger">"nome" è richiesto</div>
+    email: <input type = "date" [formControl] = "telefoniForm.controls['emailControl']"> 
+     <div *ngIf="!telefoniForm.controls['emailControl'].valid" class="alert alert-danger">"email" non è valido</div>
+            <div *ngIf="telefoniForm.controls['emailControl'].hasError('required')" class="alert alert-danger">"email" è richiesto</div>
     <br>
-    : <input [formControl] = "songForm.controls['dateControl']"> 
-     <div *ngIf="!songForm.controls['linkControl'].valid" class="alert alert-danger">"nome" non è valido</div>
-            <div *ngIf="songForm.controls['linkControl'].hasError('required')" class="alert alert-danger">"nome" è richiesto</div>
-    <br>
-    valutazione : <input [formControl] = "songForm.controls['dateControl']"> 
-     <div *ngIf="!songForm.controls['valutazioneControl'].valid" class="alert alert-danger">"nome" non è valido</div>
-            <div *ngIf="songForm.controls['valutazioneControl'].hasError('required')" class="alert alert-danger">"nome" è richiesto</div>
-    <br>
-    <div *ngIf="!songForm.valid" class="alert alert-danger">Il form non è valido</div>
-   <button class="btn btn-success btn-block" type="add" [disabled]="!songForm.valid"> Aggiungi </button>
+    <div *ngIf="!telefoniForm.valid" class="alert alert-danger">Il form non è valido</div>
+   <button class="btn btn-success btn-block" type="add" [disabled]="!telefoniForm.valid"> LOGIN </button>
   </form>
   
 <div class="w-50 text-center" style="margin: 50px auto">
-  <h2>Elenco album</h2>
+  <h2>Elenco telefoni</h2>
   <ul class="list-group">
-    <li *ngFor="let album of albums" class="list-group-item text-center"  (click)="onSelect(album)">
-      {{ album.title }} {{ album.durata }} {{ album.data_uscita }} {{ album.link }} {{ album.valutazione }}</li>
+    <li *ngFor="let telefonia of telefonie" class="list-group-item text-center"  (click)="onSelect(album)">
+      {{ telefonia.nome }} {{ telefonia.cognome }} {{ telefonia.email }}</li>
   </ul>
-  <app-view-album *ngIf="albumSelezionato" [album]="albumSelezionato"></app-view-album>
+  <app-view-album *ngIf="telefoniaSelezionata" [telefonia]="telefoniaSelezionato"></app-view-album>
 </div>
 
   {{selectedRoom | json}}
 
  <ul>
-   <li *ngFor="let song of songList">
-    {{song.album.title}} : {{song | json}}
+   <li *ngFor="let telefoni of telefoniaList">
+    {{telefoni.telefonia.nome}} : {{song | json}}
    </li>
  </ul>
