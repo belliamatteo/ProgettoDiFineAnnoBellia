@@ -17,7 +17,7 @@
      <div *ngIf="!telefoniForm.controls['cognomeControl'].valid" class="alert alert-danger">"cognome" non è valido</div>
             <div *ngIf="telefoniForm.controls['cognomeControl'].hasError('required')" class="alert alert-danger">"cognome" è richiesto</div>
     <br>
-    email: <input type = "date" [formControl] = "telefoniForm.controls['emailControl']"> 
+    email: <input [formControl] = "telefoniForm.controls['emailControl']"> 
      <div *ngIf="!telefoniForm.controls['emailControl'].valid" class="alert alert-danger">"email" non è valido</div>
             <div *ngIf="telefoniForm.controls['emailControl'].hasError('required')" class="alert alert-danger">"email" è richiesto</div>
     <br>
@@ -31,7 +31,7 @@
     <li *ngFor="let telefonia of telefonie" class="list-group-item text-center"  (click)="onSelect(album)">
       {{ telefonia.nome }} {{ telefonia.cognome }} {{ telefonia.email }}</li>
   </ul>
-  <app-view-album *ngIf="telefoniaSelezionata" [telefonia]="telefoniaSelezionato"></app-view-album>
+  <app-view-telefonia *ngIf="telefoniaSelezionata" [telefonia]="telefoniaSelezionato"></app-view-telefonia>
 </div>
 
   {{selectedRoom | json}}

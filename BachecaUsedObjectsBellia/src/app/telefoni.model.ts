@@ -1,6 +1,6 @@
 import { Telefonia } from './telefonia.model';
 
-export class Song
+export class Telefoni
 {
     constructor(
         public nome : string,

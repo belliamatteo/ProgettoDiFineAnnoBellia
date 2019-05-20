@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { TelefoniaList } from './telefoniaList.model';
 import { Telefonia } from './telefonia.model';
+import { Telefoni } from './telefoni.model';
 import { FormBuilder,FormGroup, Validators} from '@angular/forms';
 
 @Component({
@@ -14,19 +15,19 @@ export class AppComponent {
   title = "Benvenuti alla telefonia";
   telefonie = TelefoniaList;
   selectedTelefonia: Telefonia;
-  telefoniList: Telefonia[];
+  telefoniList: Telefoni[];
   telefoniForm: FormGroup;
 
   constructor(public fb: FormBuilder) { }
   ngOnInit() {
-  songForm: FormGroup;
+  telefoniForm: FormGroup;
   this.telefoniForm = this.fb.group({
       nomeControl: ['', Validators.required],
       cognomeControl: ['', Validators.required],
       emailControl: ['', Validators.required],
     });
 
-    this.telefoniList = new Array <Telefonia>();
+    this.telefoniList = new Array <Telefoni>();
   }
 
 
@@ -41,7 +42,7 @@ export class AppComponent {
     let cognome = this.telefoniForm.controls['cognomeControl'].value;
     let email = this.telefoniForm.controls['emailControl'].value;
    
-    this.telefoniList.push(new Telefonia(nome, cognome, email));
+    this.telefoniList.push(new Telefoni(nome, cognome, email));
     return false;
   }
 }
