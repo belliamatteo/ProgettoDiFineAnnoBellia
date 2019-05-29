@@ -1,15 +1,8 @@
-<div style="text-align:center">
-  <h1>
-    {{ title }}!
-  </h1>
+<h2 class="text-center mt-3">INSERISCI I TUOI DATI</h2>
+<div class="ml-5 mr-5 mt-3 border border-primary rounded">
+	<form [formGroup]="telefoniForm" (ngSubmit)="onSubmit()" class="text-center p-3">
 
-  <form [formGroup]="telefoniForm" (ngSubmit)="onSubmit()">
-
-    <select (change)=onChange() [formControl] = "telefoniForm.controls['telefoniaControl']">
-      <option [ngValue]="telefonia" *ngFor="let telefonia of telefonie"> {{telefonia.title}}</option>
-    </select> <br>
-
-    nome: <input [formControl] = "telefoniForm.controls['nomeControl']"> 
+		nome: <input [formControl] = "telefoniForm.controls['nomeControl']"> 
      <div *ngIf="!telefoniForm.controls['nomeControl'].valid" class="alert alert-danger">"nome" non è valido</div>
             <div *ngIf="telefoniForm.controls['titleControl'].hasError('required')" class="alert alert-danger">"nome" è richiesto</div>
     <br>
@@ -24,20 +17,12 @@
     <div *ngIf="!telefoniForm.valid" class="alert alert-danger">Il form non è valido</div>
    <button class="btn btn-success btn-block" type="add" [disabled]="!telefoniForm.valid"> LOGIN </button>
   </form>
-  
+
 <div class="w-50 text-center" style="margin: 50px auto">
-  <h2>Elenco telefoni</h2>
+  <h2>ELENCO REGISTRAZIONI</h2>
   <ul class="list-group">
-    <li *ngFor="let telefonia of telefonie" class="list-group-item text-center"  (click)="onSelect(album)">
-      {{ telefonia.nome }} {{ telefonia.cognome }} {{ telefonia.email }}</li>
+    <li *ngFor="let telefono of telefoni" class="list-group-item text-center"  (click)="onSelect(telefono)">
+      {{ telefono.nome }} - {{ telefono.cognome }} - {{ telefono.email }}</li>
   </ul>
-  <app-view-telefonia *ngIf="telefoniaSelezionata" [telefonia]="telefoniaSelezionato"></app-view-telefonia>
+   <app-view-telefonia *ngIf="telefonoSelezionato" [telefono]="telefonoSelezionato"></app-view-telefonia>
 </div>
-
-  {{selectedRoom | json}}
-
- <ul>
-   <li *ngFor="let telefoni of telefoniaList">
-    {{telefoni.telefonia.nome}} : {{song | json}}
-   </li>
- </ul>

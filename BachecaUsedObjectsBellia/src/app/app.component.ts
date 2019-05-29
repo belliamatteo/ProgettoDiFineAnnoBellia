@@ -1,7 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { TelefoniaList } from './telefoniaList.model';
-import { Telefonia } from './telefonia.model';
-import { Telefoni } from './telefoni.model';
+import { Telefoni } from './telefonia.model';
 import { FormBuilder,FormGroup, Validators} from '@angular/forms';
 
 @Component({
@@ -10,39 +9,34 @@ import { FormBuilder,FormGroup, Validators} from '@angular/forms';
   styleUrls: ['./app.component.css']
 })
 
-export class AppComponent {
-  
-  title = "Benvenuti alla telefonia";
-  telefonie = TelefoniaList;
-  selectedTelefonia: Telefonia;
-  telefoniList: Telefoni[];
-  telefoniForm: FormGroup;
+export class AppComponent implements OnInit {
 
-  constructor(public fb: FormBuilder) { }
-  ngOnInit() {
   telefoniForm: FormGroup;
-  this.telefoniForm = this.fb.group({
-      nomeControl: ['', Validators.required],
-      cognomeControl: ['', Validators.required],
-      emailControl: ['', Validators.required],
+  Telefoni: Telefoni[] = TelefoniaList;
+  telefonoSelezionato: Telefoni;
+
+  constructor(fb: FormBuilder) {
+    this.telefoniForm = fb.group({
+      'nome': ['', Validators.required],
+      'cognome': ['', Validators.required],
+      'email': ['', Validators.required],
     });
-
-    this.telefoniList = new Array <Telefoni>();
   }
 
-
-  //Nell'html impostare l'html <option [ngValue]="room" ... permette di passare un oggetto 
-  onChange() {
-    //In questo modo ottengo l'oggetto selezionato
-    this.selectedTelefonia = this.telefoniForm.controls['telefoniaControl'].value;
+  ngOnInit() {
   }
 
-  onSubmit(): boolean {
-    let nome = this.telefoniForm.controls['nomeControl'].value;
-    let cognome = this.telefoniForm.controls['cognomeControl'].value;
-    let email = this.telefoniForm.controls['emailControl'].value;
-   
-    this.telefoniList.push(new Telefoni(nome, cognome, email));
-    return false;
+  onSelect(telefono: Telefoni): void {
+    this.telefonoSelezionato = telefono;
+  }
+
+  onSubmit(): void {
+
+    let telefono: Telefoni = new Telefoni();
+    telefono.nome = this.telefoniForm.controls['nome'].value;
+    telefono.cognome = this.telefoniForm.controls['cognome'].value;
+    telefono.email = this.telefoniForm.controls['email'].value;
+
+    this.Telefoni.push(telefono);
   }
 }

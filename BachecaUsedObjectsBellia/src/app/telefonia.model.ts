@@ -1,8 +1,6 @@
-export class Telefonia
+export class Telefoni
 {
-    constructor(
-    public nome:string,
-    public cognome : string,
-    public email : string,
-    ){}
+    public nome:string;
+    public cognome : string;
+    public email : string;
 }

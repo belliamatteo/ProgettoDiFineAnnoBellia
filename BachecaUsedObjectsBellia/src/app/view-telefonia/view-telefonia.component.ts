@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Telefoni } from '../telefoni.model';
+import { Telefoni } from '../telefonia.model';
 
 @Component({
   selector: 'app-view-telefonia',
