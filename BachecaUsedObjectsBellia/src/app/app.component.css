@@ -4,20 +4,21 @@ input {
   font-size: 15px;
 }
 
-.alert {
-  height: 30px;
-  margin: 5px;
-  padding: 0;
-}
-
 .ng-valid:not(form) {
-  border-left: 5px solid #42A948; /* green */
+  border: 2px solid #42A948;
 }
 
 .ng-invalid:not(form)  {
-  border-left: 5px solid #a94442; /* red */
+  border: 2px solid #a94442;
 }
 
-.selected {
-  background-color: #72B01D;
+.container-grid {
+  display: grid;
+  grid-template-columns: 5fr 4fr;
+  grid-gap: 20px;
+}
+
+.container-fantallenatori {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
 }
