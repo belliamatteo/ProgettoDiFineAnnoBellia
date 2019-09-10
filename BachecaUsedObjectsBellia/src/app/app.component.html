@@ -2,27 +2,72 @@
 <div class="ml-5 mr-5 mt-3 border border-primary rounded">
 	<form [formGroup]="telefoniForm" (ngSubmit)="onSubmit()" class="text-center p-3">
 
-		nome: <input [formControl] = "telefoniForm.controls['nomeControl']"> 
-     <div *ngIf="!telefoniForm.controls['nomeControl'].valid" class="alert alert-danger">"nome" non è valido</div>
-            <div *ngIf="telefoniForm.controls['titleControl'].hasError('required')" class="alert alert-danger">"nome" è richiesto</div>
-    <br>
-    cognome: <input [formControl] = "telefoniForm.controls['cognomeControl']"> 
-     <div *ngIf="!telefoniForm.controls['cognomeControl'].valid" class="alert alert-danger">"cognome" non è valido</div>
-            <div *ngIf="telefoniForm.controls['cognomeControl'].hasError('required')" class="alert alert-danger">"cognome" è richiesto</div>
-    <br>
-    email: <input [formControl] = "telefoniForm.controls['emailControl']"> 
-     <div *ngIf="!telefoniForm.controls['emailControl'].valid" class="alert alert-danger">"email" non è valido</div>
-            <div *ngIf="telefoniForm.controls['emailControl'].hasError('required')" class="alert alert-danger">"email" è richiesto</div>
-    <br>
-    <div *ngIf="!telefoniForm.valid" class="alert alert-danger">Il form non è valido</div>
-   <button class="btn btn-success btn-block" type="add" [disabled]="!telefoniForm.valid"> LOGIN </button>
+		Nome
+        <input type="text" class="form-control" placeholder="Nome" [formControl]="myForm.controls['nome']">
+        <div *ngIf="myForm.controls['nome'].hasError('required')" class="text-danger">Il nome è richiesto</div>
+      </div>
+      <div class="col">
+        Cognome
+        <input type="text" class="form-control" placeholder="Cognome" [formControl]="myForm.controls['cognome']">
+        <div *ngIf="myForm.controls['cognome'].hasError('required')" class="text-danger">Il cognome è richiesto</div>
+      </div>
+    </div>
+    <div class="m-3">
+      Squadra
+      <input type="text" class="form-control" placeholder="Squadra" [formControl]="myForm.controls['squadra']">
+      <div *ngIf="myForm.controls['squadra'].hasError('required')" class="text-danger">La squadra è richiesta</div>
+    </div>
+    <div class="m-3">
+      Password
+      <input type="password" class="form-control" placeholder="Password" [formControl]="myForm.controls['password']">
+      <div *ngIf="myForm.controls['password'].hasError('required')" class="text-danger">La password è richiesta</div>
+    </div>
+    <div class="m-3">
+      Email
+      <input type="email" class="form-control" placeholder="example@gmail.com" [formControl]="myForm.controls['email']">
+      <div *ngIf="myForm.controls['email'].hasError('required')" class="text-danger">L'email è richiesta</div>
+    </div>
+    <div *ngIf="!myForm.valid" class="text-danger m-3"><h4>Il form per la registrazione non è valida</h4></div>
+        <h4 *ngIf="registerEffettuato" class="text-success mt-3 p-3">REGISTRAZIONE EFFETTUATA</h4>
+        <button class="m-3 btn btn-success btn-block btn-md w-25 float-right" type="submit" [disabled]="!myForm.valid">Registrati</button>
   </form>
-
-<div class="w-50 text-center" style="margin: 50px auto">
-  <h2>ELENCO REGISTRAZIONI</h2>
-  <ul class="list-group">
-    <li *ngFor="let telefono of telefoni" class="list-group-item text-center"  (click)="onSelect(telefono)">
-      {{ telefono.nome }} - {{ telefono.cognome }} - {{ telefono.email }}</li>
-  </ul>
-   <app-view-telefonia *ngIf="telefonoSelezionato" [telefono]="telefonoSelezionato"></app-view-telefonia>
+  <form [formGroup]="LoginForm" (ngSubmit)="login(LoginForm.value)" class="p-5">
+    <h2 class="text-danger p-2"><b>LOGIN</b></h2>
+    <div class="col">
+      Email
+      <input type="text" class="form-control" placeholder="example@gmail.com" [formControl]="LoginForm.controls['email']">
+      <div *ngIf="LoginForm.controls['email'].hasError('required')" class="text-danger">L'email è richiesta</div>
+    </div>
+    <br>
+    <div class="col">
+      Password
+      <input type="password" class="form-control" placeholder="Password" [formControl]="LoginForm.controls['password']">
+      <div *ngIf="LoginForm.controls['password'].hasError('required')" class="text-danger">La password è richiesta</div>
+    </div>
+    <div *ngIf="!LoginForm.valid" class="text-danger m-3"><h4>Il form per il login non è valido</h4></div>
+      <h4 *ngIf="loginEffettuato" class="text-success mt-3 p-3">LOGIN EFFETTUATO</h4>
+      <h4 *ngIf="logoutEffettuato" class="text-danger mt-3 p-3">LOGOUT EFFETTUATO</h4>
+      <h4 *ngIf="pwemailsbagliata" class="text-danger mt-3">PASSWORD/EMAIL SBAGLIATI</h4>
+      <button [disabled]="!schiacciaLogin" class="m-3 btn btn-danger btn-block btn-md w-25 float-right" type="submit" (click)="logout()">Logout</button>
+      <button class="m-3 btn btn-success btn-block btn-md w-25 float-right" type="submit" [disabled]="!LoginForm.valid">Login</button>
+  </form>
 </div>
+
+<hr>
+<button class="m-3 btn btn-success btn-block btn-md w-25 float-right" (click)="hidea(a)" type="submit" [disabled]="!l">SHOW/HIDE LISTA FANTALLENATORI</button>
+<br>
+<div class="m-3 text-center" *ngIf="a">
+  <ul class="mt-5 list-group">
+      <h3 class="text-danger text-center"><b>LISTA DEGLI FANTALLENATORI REGISTRATI</b></h3>
+      <br>
+      <div class="container-fantallenatori">
+        <li *ngFor="let a of fantallenatori" class="list-group-item border-primary m-3" style="background-color: lightblue"><b class="text-success">{{ a.nome }} {{a.cognome}}</b> ({{a.squadra}}) <br> eMail: {{a.email}}</li>
+      </div>
+  </ul>
+</div>
+<br>
+<hr>
+<button class="m-3 btn btn-success btn-block btn-md w-25 float-right" (click)="hideb(b)" type="submit" [disabled]="!l">SHOW/HIDE AGGIUNTA NUOVI CALCIATORI</button>
+<br>
+<br>
+<app-post *ngIf="b" [nomeFantallenatoreOnline]="nomeFantallenatoreOnline" [cognomeFantallenatoreOnline]="cognomeFantallenatoreOnline" [squadra]="squadra" [emailFantallenatoreOnline]="emailFantallenatoreOnline"></app-post>
