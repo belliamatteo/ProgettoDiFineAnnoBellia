@@ -1,26 +1,23 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
-import { AppComponent } from './app.component';
-import { HttpClientModule } from '@angular/common/http'; //Importa Il modulo http
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-import { 
-FormsModule,
-  ReactiveFormsModule
- } from '@angular/forms';
-import { ViewTelefoniaComponent } from './view-telefonia/view-telefonia.component';
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
+import { PostComponent } from './post/post.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ViewTelefoniaComponent
+    PostComponent
   ],
   imports: [
     BrowserModule,
+    AppRoutingModule,
+    NgbModule,
     FormsModule,
-    ReactiveFormsModule,
-    HttpClientModule,
-    BrowserModule, NgbModule
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
